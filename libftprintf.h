@@ -21,19 +21,31 @@ typedef struct s_printf_flags
 	int		before_dot;
 	int		after_dot;
 	char	minus;
-	char	zeros;
+	char	zero;
 	char	dot;
 	char	sharp;
 	char	space;
 	char	plus;
 }	t_printf_flags;
 
-int		ft_printf(const char *str, ...);
-
-int		ft_filler(int num, t_printf_flags flags);
-size_t	ft_strlen(char *str);
-void	ft_putstr_fd(char *s, int fd);
-
 int		ft_printf_char(char c, t_printf_flags flags);
 int		ft_printf_str(char *str, t_printf_flags flags);
+
+int		ft_func_selector(char const **str, va_list args);
+
+int		ft_printf_pointer(long long paddr, t_printf_flags flags);
+int		ft_printf_id(int n, t_printf_flags flags);
+int		ft_printf_u(unsigned int un, t_printf_flags flags);
+int		ft_printf_xX(long long n, t_printf_flags flags, char upper);
+
+char	*ft_lltoa_base(long long n, int base);
+char	*ft_number_flag_apply(char *nstr, t_printf_flags flags);
+
+int		ft_filler(int num, t_printf_flags flags);
+int		ft_printf_put(char *str, t_printf_flags flags);
+size_t	ft_strlen(char *str);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin_mod(char const *s1, char const *s2);
+
+int		ft_printf(char const *str, ...);
 #endif

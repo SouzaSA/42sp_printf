@@ -20,9 +20,9 @@ int	ft_filler(int num, t_printf_flags flags)
 	while (i < num)
 	{
 		if (flags.zero)
-			write(1, '0', 1);
+			write(1, "0", 1);
 		else
-			write(1, ' ', 1);
+			write(1, " ", 1);
 		i++;
 	}
 	return (i);

@@ -32,5 +32,8 @@ int	ft_printf_char(char c, t_printf_flags flags)
 
 int	ft_printf_str(char *str, t_printf_flags flags)
 {
-	ft_printf_put(char *str, t_printf_flags flags);
+	int	i;
+
+	i = ft_printf_put(str, flags);
+	return (i);
 }

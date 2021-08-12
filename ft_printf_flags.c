@@ -12,34 +12,34 @@
 
 #include "libftprintf.h"
 
-static void	ft_init_t_flag(t_printf_flags *flags);
-static void	ft_get_flags(t_printf_flags *flags, char **str);
+static void	ft_init_flags(t_printf_flags *flags);
+static void	ft_get_flags(t_printf_flags *flags, char const **str);
 static void	ft_set_flags(t_printf_flags *flags, char c);
 
-int	ft_func_selector(char **str, va_list args)
+int	ft_func_selector(char const **str, va_list args)
 {
 	int				i;
 	t_printf_flags	flags;
 
 	i = 0;
 	ft_init_flags(&flags);
-	ft_get_flags(&flags, &str);
-	if (*str == 'c')
-		i = ft_printf_char(va_arg(args, char), flags);
-	if (*str == 's')
-		i = ft_printf_str(va_arg(args, (char *)), flags);
-	if (*str == 'p')
+	ft_get_flags(&flags, str);
+	if (**str == 'c')
+		i = ft_printf_char(va_arg(args, int), flags);
+	if (**str == 's')
+		i = ft_printf_str(va_arg(args, char *), flags);
+	if (**str == 'p')
 		i = ft_printf_pointer(va_arg(args, long long), flags);
-	if (*str == 'd' || *str == 'i')
-		i = ft_printf_id(iva_arg(args, int), flags);
-	if (*str == 'u')
+	if (**str == 'd' || **str == 'i')
+		i = ft_printf_id(va_arg(args, int), flags);
+	if (**str == 'u')
 		i = ft_printf_u(va_arg(args, unsigned int), flags);
-	if (*str == 'x')
+	if (**str == 'x')
 		i = ft_printf_xX(va_arg(args, long long), flags, 0);
-	if (*str == 'X')
+	if (**str == 'X')
 		i = ft_printf_xX(va_arg(args, long long), flags, 1);
-	if (*str == '%')
-		i = ft_printf_put(char *str, flags);
+	if (**str == '%')
+		i = ft_printf_put((char *)str, flags);
 	return (i);
 }
 
@@ -55,18 +55,18 @@ static void	ft_init_flags(t_printf_flags *flags)
 	flags->plus = 0;
 }
 
-static void	ft_get_flags(t_printf_flags *flags, char **str)
+static void	ft_get_flags(t_printf_flags *flags, char const **str)
 {
 	int		i;
-	char	*flags;
+	char	*flags_val;
 	char	*descriptors;
 
 	i = 0;
-	flags = "0123456789-0.# +";
+	flags_val = "0123456789-0.# +";
 	descriptors = "cspdiuxX";
-	while (ft_strchr(flags, str[i]) && ft_strchr(descriptors, str[i]))
+	while (ft_strchr(flags_val, *str[i]) && ft_strchr(descriptors, *str[i]))
 	{
-		ft_set_flags(flags, c);
+		ft_set_flags(flags, *str[i]);
 		i++;
 	}
 }

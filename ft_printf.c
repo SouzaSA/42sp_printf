@@ -24,14 +24,14 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 		{
 			str++;
-			printed += ft_func_selector(&str), args);
+			printed += ft_func_selector(&str, args);
 		}
 		else
 		{
 			write(1, str, 1);
 			printed++;
 		}
-		srt++;
+		str++;
 	}
 	va_end(args);
 	return (printed);

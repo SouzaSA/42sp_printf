@@ -55,8 +55,8 @@ int	ft_printf_u(unsigned int un, t_printf_flags flags)
 	free(tmp);
 	tmp = NULL;
 	n_printed = ft_printf_put(u_num, flags);
-	free(num);
-	num = NULL;
+	free(u_num);
+	u_num = NULL;
 	return (n_printed);
 }
 
@@ -68,7 +68,7 @@ int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
 	char	*tmp;
 
 	i = 0;
-	tmp = ft_lltoa_base((long long)un, 16);
+	tmp = ft_lltoa_base((long long)n, 16);
 	x_num = ft_number_flag_apply(tmp, flags);
 	free(tmp);
 	tmp = NULL;
@@ -81,7 +81,7 @@ int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
 		}
 	}
 	n_printed = ft_printf_put(x_num, flags);
-	free(num);
-	num = NULL;
+	free(x_num);
+	x_num = NULL;
 	return (n_printed);
 }

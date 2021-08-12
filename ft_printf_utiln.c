@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprintf.h"
+#include "libftprintf.h"
 
-static int	ft_itoa_base_aux(long long n, int base, char *str);
+static int	ft_lltoa_base_aux(long long n, int base, char *str);
 static int	ft_atoi_err(int signal);
 
 char	*ft_lltoa_base(long long n, int base)
@@ -60,9 +60,10 @@ static int	ft_lltoa_base_aux(long long n, int base, char *str)
 	if (n != 0)
 	{
 		i += ft_lltoa_base_aux(n / base, base, str) - 1;
-		s[i] = base_val[signal * (n % base)];
+		str[i] = base_val[signal * (n % base)];
 		return (i);
 	}
+	return (i);
 }
 
 char	*ft_number_flag_apply(char *nstr, t_printf_flags flags)
@@ -71,7 +72,7 @@ char	*ft_number_flag_apply(char *nstr, t_printf_flags flags)
 	char	*num;
 	char	*tmp;
 
-	tmp = *nstr;
+	tmp = nstr;
 	if (flags.plus)
 	{
 		num = ft_strjoin_mod("+", tmp);
