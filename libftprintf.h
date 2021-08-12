@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:30:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/09 20:17:02 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/11 14:16:00 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,12 @@ typedef struct s_printf_flags
 	char	plus;
 }	t_printf_flags;
 
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
+
+int		ft_filler(int num, t_printf_flags flags);
+size_t	ft_strlen(char *str);
+void	ft_putstr_fd(char *s, int fd);
+
+int		ft_printf_char(char c, t_printf_flags flags);
+int		ft_printf_str(char *str, t_printf_flags flags);
 #endif

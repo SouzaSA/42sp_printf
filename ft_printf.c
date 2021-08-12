@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:29:42 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/09 21:24:00 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/11 20:06:48 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,23 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		printed;
-	int		i;
 
 	va_start(args, str);
 	printed = 0;
-	i = 0;
 	while (*str != '\0')
 	{
 		if (*str == '%')
-
+		{
+			str++;
+			printed += ft_func_selector(&str), args);
+		}
+		else
+		{
+			write(1, str, 1);
+			printed++;
+		}
+		srt++;
 	}
+	va_end(args);
 	return (printed);
 }
