@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/12 23:03:12 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 13:18:45 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ char	*ft_number_flag_apply(char *nstr, t_printf_flags flags)
 {
 	char	*num;
 
-	if (flags.plus)
+	if (flags.plus && nstr[0] != "-" && nstr[0] != "0")
 	{
 		num = ft_strjoin_mod("+", nstr);
 	}
-	else if (flags.space)
+	else if (flags.space && nstr[0] != "-" && nstr[0] != "0")
 	{
 		num = ft_strjoin_mod(" ", nstr);
 	}
