@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/12 23:02:37 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 13:33:01 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
 	char	*tmp;
 
 	i = 0;
-	tmp = ft_lltoa_base((long long)n, 16);
+	x_num = ft_lltoa_base((long long)n, 16);
+	tmp = ft_strjoin_mod("0x", tmp);
+	free(x_num);
 	x_num = ft_number_flag_apply(tmp, flags);
 	free(tmp);
 	tmp = NULL;
