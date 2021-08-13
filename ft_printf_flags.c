@@ -6,14 +6,14 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/11 21:12:16 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/12 23:19:51 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
 static void	ft_init_flags(t_printf_flags *flags);
-static void	ft_get_flags(t_printf_flags *flags, char const **str);
+static int	ft_get_flags(t_printf_flags *flags, char const **str);
 static void	ft_set_flags(t_printf_flags *flags, char c);
 
 int	ft_func_selector(char const **str, va_list args)
@@ -23,7 +23,7 @@ int	ft_func_selector(char const **str, va_list args)
 
 	i = 0;
 	ft_init_flags(&flags);
-	ft_get_flags(&flags, str);
+	*str += ft_get_flags(&flags, str);
 	if (**str == 'c')
 		i = ft_printf_char(va_arg(args, int), flags);
 	if (**str == 's')
@@ -55,7 +55,7 @@ static void	ft_init_flags(t_printf_flags *flags)
 	flags->plus = 0;
 }
 
-static void	ft_get_flags(t_printf_flags *flags, char const **str)
+static int	ft_get_flags(t_printf_flags *flags, char const **str)
 {
 	int		i;
 	char	*flags_val;
@@ -64,11 +64,12 @@ static void	ft_get_flags(t_printf_flags *flags, char const **str)
 	i = 0;
 	flags_val = "0123456789-0.# +";
 	descriptors = "cspdiuxX";
-	while (ft_strchr(flags_val, *str[i]) && ft_strchr(descriptors, *str[i]))
+	while (ft_strchr(flags_val, (*str)[i]) && !ft_strchr(descriptors, (*str)[i]))
 	{
-		ft_set_flags(flags, *str[i]);
+		ft_set_flags(flags, (*str)[i]);
 		i++;
 	}
+	return (i);
 }
 
 static void	ft_set_flags(t_printf_flags *flags, char c)

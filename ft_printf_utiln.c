@@ -6,88 +6,76 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/11 15:01:19 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/12 23:03:12 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	ft_lltoa_base_aux(long long n, int base, char *str);
+static int	number_of_digits(long long n, long long base);
 static int	ft_atoi_err(int signal);
 
 char	*ft_lltoa_base(long long n, int base)
 {
-	int			len;
-	long long	tmp;
-	char		*rtn;
+	int		len;
+	char	*base_str;
+	char	*str;
 
-	len = 0;
-	tmp = n;
-	rtn = NULL;
-	while (tmp != 0)
+	len = number_of_digits(n, (long long)base);
+	base_str = "0123456789abcdef";
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (str)
 	{
-		tmp /= base;
-		len++;
+		str[len] = '\0';
+		if (n == 0)
+			str[0] = '0';
+		if (n < 0)
+		{
+			str[0] = '-';
+			str[--len] = base_str[-1 * (n % base)];
+			n /= -(long long)base;
+		}
+		while (n > 0)
+		{
+			str[--len] = base_str[n % base];
+			n /= (long long)base;
+		}
 	}
-	if (n < 0)
-		len++;
-	rtn = (char *)malloc((len + 1) * sizeof(char));
-	if (rtn)
-	{
-		ft_lltoa_base_aux(n, base, rtn);
-		rtn[len] = '\0';
-	}
-	return (rtn);
+	return (str);
 }
 
-static int	ft_lltoa_base_aux(long long n, int base, char *str)
+static int	number_of_digits(long long n, long long base)
 {
-	int		i;
-	int		signal;
-	char	*base_val;
+	int	len;
 
-	i = 0;
-	signal = 1;
-	base_val = "0123456789abcdef";
-	if (n < 0)
+	len = 0;
+	if (n < 0 || n == 0)
+		len++;
+	while (n != 0)
 	{
-		str[0] = '-';
-		signal = -1;
-		i++;
+		n /= base;
+		len++;
 	}
-	if (n == 0)
-		return (1);
-	if (n != 0)
-	{
-		i += ft_lltoa_base_aux(n / base, base, str) - 1;
-		str[i] = base_val[signal * (n % base)];
-		return (i);
-	}
-	return (i);
+	return (len);
 }
 
 char	*ft_number_flag_apply(char *nstr, t_printf_flags flags)
 {
-	int		n_printed;
 	char	*num;
-	char	*tmp;
 
-	tmp = nstr;
 	if (flags.plus)
 	{
-		num = ft_strjoin_mod("+", tmp);
+		num = ft_strjoin_mod("+", nstr);
 	}
 	else if (flags.space)
 	{
-		num = ft_strjoin_mod(" ", tmp);
+		num = ft_strjoin_mod(" ", nstr);
 	}
 	else
 	{
-		num = tmp;
+		num = ft_strjoin_mod("", nstr);
 	}
-	free(tmp);
-	tmp = NULL;
-	return (nstr);
+	return (num);
 }
 
 int	ft_atoi(const char *nptr)

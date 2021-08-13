@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_p.c                                      :+:      :+:    :+:   */
+/*   ft_printf_pdix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/11 14:41:31 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/12 23:02:37 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
 		{
 			if (x_num[i] >= 'a' && x_num[i] <= 'f')
 				x_num[i] -= 32;
+			i++;
 		}
 	}
 	n_printed = ft_printf_put(x_num, flags);
