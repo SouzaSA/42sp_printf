@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:39:44 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/12 22:48:32 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:29:53 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_printf_put(char *str, t_printf_flags flags)
 	str_len = ft_strlen(str);
 	if (flags.minus)
 	{
-		while (*str)
+		while (str && *str)
 		{
 			write(1, str, 1);
 			str++;
