@@ -6,19 +6,19 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 15:37:26 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 17:19:21 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf_pointer(long long paddr, t_printf_flags flags)
+int	ft_printf_pointer(unsigned long long paddr, t_printf_flags flags)
 {
 	int		n_printed;
 	char	*str_addr;
 	char	*tmp;
 
-	tmp = ft_lltoa_base(paddr, 16);
+	tmp = ft_ulltoa_base(paddr, 16);
 	str_addr = ft_strjoin_mod("0x", tmp);
 	free(tmp);
 	tmp = NULL;
@@ -50,7 +50,7 @@ int	ft_printf_u(unsigned int un, t_printf_flags flags)
 	char	*u_num;
 	char	*tmp;
 
-	tmp = ft_lltoa_base((long long)un, 10);
+	tmp = ft_ulltoa_base((long long)un, 10);
 	u_num = ft_number_flag_apply(tmp, flags);
 	free(tmp);
 	tmp = NULL;

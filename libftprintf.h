@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:30:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/12 20:44:32 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 17:19:07 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int		ft_printf_str(char *str, t_printf_flags flags);
 
 int		ft_func_selector(char const **str, va_list args);
 
-int		ft_printf_pointer(long long paddr, t_printf_flags flags);
+int		ft_printf_pointer(unsigned long long paddr, t_printf_flags flags);
 int		ft_printf_id(int n, t_printf_flags flags);
 int		ft_printf_u(unsigned int un, t_printf_flags flags);
 int		ft_printf_xX(long long n, t_printf_flags flags, char upper);
 
 char	*ft_lltoa_base(long long n, int base);
+char	*ft_ulltoa_base(unsigned long long n, int base);
 char	*ft_number_flag_apply(char *nstr, t_printf_flags flags);
 
 int		ft_filler(int num, t_printf_flags flags);
