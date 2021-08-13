@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 17:16:53 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 17:22:37 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static int	number_of_digits_unsigned(unsigned long long n, long long base)
 	}
 	return (len);
 }
-
 
 char	*ft_lltoa_base(long long n, int base)
 {
