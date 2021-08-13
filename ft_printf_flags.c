@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 17:27:33 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 17:38:03 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ static int	ft_get_flags(t_printf_flags *flags, char const **str)
 {
 	int		i;
 	char	*flags_val;
-	char	*descriptors;
 
 	i = 0;
 	flags_val = "0123456789-0.# +";
-	descriptors = "cspdiuxX";
 	while (ft_strchr(flags_val, (*str)[i]))
 	{
 		ft_set_flags(flags, (*str)[i]);
@@ -74,13 +72,13 @@ static int	ft_get_flags(t_printf_flags *flags, char const **str)
 
 static void	ft_set_flags(t_printf_flags *flags, char c)
 {
-	if (c > '0' && c <= '9' && !flags->dot)
+	if (c >= '0' && c <= '9' && !flags->dot)
 		flags->before_dot = flags->before_dot * 10 + c - '0';
-	if (c > '0' && c <= '9' && flags->dot)
+	if (c >= '0' && c <= '9' && flags->dot)
 		flags->after_dot = flags->after_dot * 10 + c - '0';
 	if (c == '-')
 		flags->minus++;
-	if (c == '0')
+	if (c == '0' && flags->before_dot == 0)
 		flags->zero++;
 	if (c == '.')
 		flags->dot++;
