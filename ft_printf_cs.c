@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:28:11 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 13:39:01 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:33:26 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_printf_str(char *str, t_printf_flags flags)
 {
 	int	i;
 
-	i = ft_printf_put(str, flags);
+	i = 0;
+	if (str)
+		i = ft_printf_put(str, flags);
 	return (i);
 }
