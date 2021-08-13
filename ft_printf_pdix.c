@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 13:33:01 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/13 15:37:26 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
 	{
 		while (x_num[i] != '\0')
 		{
-			if (x_num[i] >= 'a' && x_num[i] <= 'f')
+			if (x_num[i] >= 'a' && x_num[i] <= 'z')
 				x_num[i] -= 32;
 			i++;
 		}
