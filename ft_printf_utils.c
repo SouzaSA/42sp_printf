@@ -6,20 +6,20 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:39:44 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 15:29:53 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 15:54:08 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_filler(int num, t_printf_flags flags)
+int	ft_filler(int num, t_printf_flags *flags)
 {
 	int	i;
 
 	i = 0;
 	while (i < num)
 	{
-		if (flags.zero)
+		if (flags->zero)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
@@ -28,25 +28,25 @@ int	ft_filler(int num, t_printf_flags flags)
 	return (i);
 }
 
-int	ft_printf_put(char *str, t_printf_flags flags)
+int	ft_printf_put(char *str, t_printf_flags *flags)
 {
 	int	i;
 	int	str_len;
 
 	i = 0;
 	str_len = ft_strlen(str);
-	if (flags.minus)
+	if (flags->minus)
 	{
 		while (str && *str)
 		{
 			write(1, str, 1);
 			str++;
 		}
-		i = ft_filler(flags.before_dot - str_len, flags);
+		i = ft_filler(flags->min_size - str_len, flags);
 	}
 	else
 	{
-		i = ft_filler(flags.before_dot - str_len, flags);
+		i = ft_filler(flags->min_size - str_len, flags);
 		while (*str)
 		{
 			write(1, str, 1);

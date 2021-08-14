@@ -1,4 +1,6 @@
-SRCS	=	ft_printf_cs.c	\
+SRCS	=	\
+			ft_printf_cs.c	\
+			ft_printf_filler_num.c	\
 			ft_printf_flags.c	\
 			ft_printf_pdix.c	\
 			ft_printf_utiln.c	\

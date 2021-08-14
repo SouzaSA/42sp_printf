@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 17:38:03 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 15:43:13 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,28 @@ int	ft_func_selector(char const **str, va_list args)
 	ft_init_flags(&flags);
 	*str += ft_get_flags(&flags, str);
 	if (**str == 'c')
-		i = ft_printf_char(va_arg(args, int), flags);
+		i = ft_printf_char(va_arg(args, int), &flags);
 	if (**str == 's')
-		i = ft_printf_str(va_arg(args, char *), flags);
+		i = ft_printf_str(va_arg(args, char *), &flags);
 	if (**str == 'p')
-		i = ft_printf_pointer(va_arg(args, long long), flags);
+		i = ft_printf_pointer(va_arg(args, long long), &flags);
 	if (**str == 'd' || **str == 'i')
-		i = ft_printf_id(va_arg(args, int), flags);
+		i = ft_printf_id(va_arg(args, int), &flags);
 	if (**str == 'u')
-		i = ft_printf_u(va_arg(args, unsigned int), flags);
+		i = ft_printf_u(va_arg(args, unsigned int), &flags);
 	if (**str == 'x')
-		i = ft_printf_xX(va_arg(args, long long), flags, 0);
+		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 0);
 	if (**str == 'X')
-		i = ft_printf_xX(va_arg(args, long long), flags, 1);
+		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 1);
 	if (**str == '%')
-		i = ft_printf_put("\%", flags);
+		i = ft_printf_put("\%", &flags);
 	return (i);
 }
 
 static void	ft_init_flags(t_printf_flags *flags)
 {
-	flags->before_dot = 0;
-	flags->after_dot = 0;
+	flags->min_size = 0;
+	flags->precision = 0;
 	flags->minus = 0;
 	flags->zero = 0;
 	flags->dot = 0;
@@ -73,12 +73,12 @@ static int	ft_get_flags(t_printf_flags *flags, char const **str)
 static void	ft_set_flags(t_printf_flags *flags, char c)
 {
 	if (c >= '0' && c <= '9' && !flags->dot)
-		flags->before_dot = flags->before_dot * 10 + c - '0';
+		flags->min_size = flags->min_size * 10 + c - '0';
 	if (c >= '0' && c <= '9' && flags->dot)
-		flags->after_dot = flags->after_dot * 10 + c - '0';
+		flags->precision = flags->precision * 10 + c - '0';
 	if (c == '-')
 		flags->minus++;
-	if (c == '0' && flags->before_dot == 0)
+	if (c == '0' && flags->dot && flags->min_size == 0)
 		flags->zero++;
 	if (c == '.')
 		flags->dot++;

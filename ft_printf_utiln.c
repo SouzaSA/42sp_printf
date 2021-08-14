@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 17:22:37 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 16:11:08 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ char	*ft_ulltoa_base(unsigned long long n, int base)
 		str[len] = '\0';
 		if (n == 0)
 			str[0] = '0';
-		if (n < 0)
-		{
-			str[0] = '-';
-			str[--len] = base_str[-1 * (n % base)];
-			n /= -(long long)base;
-		}
 		while (n > 0)
 		{
 			str[--len] = base_str[n % base];
@@ -49,7 +43,7 @@ static int	number_of_digits_unsigned(unsigned long long n, long long base)
 	int	len;
 
 	len = 0;
-	if (n < 0 || n == 0)
+	if (n == 0)
 		len++;
 	while (n != 0)
 	{
@@ -103,15 +97,15 @@ static int	number_of_digits(long long n, long long base)
 	return (len);
 }
 
-char	*ft_number_flag_apply(char *nstr, t_printf_flags flags)
+char	*ft_number_flag_apply(char *nstr, t_printf_flags *flags)
 {
 	char	*num;
 
-	if (flags.plus && nstr[0] != '-')
+	if (flags->plus && nstr[0] != '-')
 	{
 		num = ft_strjoin_mod("+", nstr);
 	}
-	else if (flags.space && nstr[0] != '-')
+	else if (flags->space && nstr[0] != '-')
 	{
 		num = ft_strjoin_mod(" ", nstr);
 	}

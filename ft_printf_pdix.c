@@ -6,13 +6,15 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/13 17:24:26 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 17:15:13 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf_pointer(unsigned long long paddr, t_printf_flags flags)
+static void	ft_upper_str(char *str);
+
+int	ft_printf_pointer(unsigned long long paddr, t_printf_flags *flags)
 {
 	int		n_printed;
 	char	*str_addr;
@@ -28,7 +30,7 @@ int	ft_printf_pointer(unsigned long long paddr, t_printf_flags flags)
 	return (n_printed);
 }
 
-int	ft_printf_id(int n, t_printf_flags flags)
+int	ft_printf_id(int n, t_printf_flags *flags)
 {
 	int		n_printed;
 	char	*num;
@@ -44,13 +46,13 @@ int	ft_printf_id(int n, t_printf_flags flags)
 	return (n_printed);
 }
 
-int	ft_printf_u(unsigned int un, t_printf_flags flags)
+int	ft_printf_u(unsigned int un, t_printf_flags *flags)
 {
 	int		n_printed;
 	char	*u_num;
 	char	*tmp;
 
-	tmp = ft_ulltoa_base((long long)un, 10);
+	tmp = ft_ulltoa_base((unsigned long long)un, 10);
 	u_num = ft_number_flag_apply(tmp, flags);
 	free(tmp);
 	tmp = NULL;
@@ -60,29 +62,37 @@ int	ft_printf_u(unsigned int un, t_printf_flags flags)
 	return (n_printed);
 }
 
-int	ft_printf_xX(long long n, t_printf_flags flags, char upper)
+int	ft_printf_xX(unsigned long n, t_printf_flags *flags, char upper)
 {
-	int		i;
 	int		n_printed;
 	char	*x_num;
 	char	*tmp;
 
-	i = 0;
-	tmp = ft_lltoa_base((long long)n, 16);
+	tmp = ft_ulltoa_base((unsigned long long)n, 16);
 	x_num = ft_number_flag_apply(tmp, flags);
+	free(tmp);
+	tmp = x_num;
+	x_num = ft_add_precision(tmp, flags);
+	free(tmp);
+	tmp = x_num;
+	if (flags->sharp)
+		x_num = ft_strjoin_mod("0x", tmp);
 	free(tmp);
 	tmp = NULL;
 	if (upper)
-	{
-		while (x_num[i] != '\0')
-		{
-			if (x_num[i] >= 'a' && x_num[i] <= 'z')
-				x_num[i] -= 32;
-			i++;
-		}
-	}
+		ft_upper_str(x_num);
 	n_printed = ft_printf_put(x_num, flags);
 	free(x_num);
 	x_num = NULL;
 	return (n_printed);
+}
+
+static void	ft_upper_str(char *str)
+{
+	while (str && *str)
+	{
+		if (*str >= 'a' && *str <= 'z')
+			*str -= 32;
+		str++;
+	}
 }
