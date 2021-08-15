@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 17:15:13 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 23:00:04 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,11 @@ int	ft_printf_xX(unsigned long n, t_printf_flags *flags, char upper)
 	x_num = ft_add_precision(tmp, flags);
 	free(tmp);
 	tmp = x_num;
-	if (flags->sharp)
+	if (flags->sharp && n != 0)
+	{
 		x_num = ft_strjoin_mod("0x", tmp);
-	free(tmp);
+		free(tmp);
+	}
 	tmp = NULL;
 	if (upper)
 		ft_upper_str(x_num);

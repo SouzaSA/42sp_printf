@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 18:32:35 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 20:07:57 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 21:35:48 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ static int	ft_printf_pres_fill_size(char *str, t_printf_flags *flags)
 	if (flags->precision > size)
 		size = flags->precision - size;
 	if (flags->precision <= size)
-		size = 1;
+		size = 0;
 	return (size);
 }

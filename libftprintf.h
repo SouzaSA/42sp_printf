@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:30:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 17:14:55 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 21:43:20 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 typedef struct s_printf_flags
 {
-	int		min_size;
-	int		precision;
-	char	minus;
-	char	zero;
-	char	dot;
-	char	sharp;
-	char	space;
-	char	plus;
+	int	min_size;
+	int	precision;
+	int	minus;
+	int	zero;
+	int	dot;
+	int	sharp;
+	int	space;
+	int	plus;
 }	t_printf_flags;
 
 int		ft_printf_char(char c, t_printf_flags *flags);

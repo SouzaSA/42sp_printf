@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 15:43:13 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/14 21:56:49 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	ft_set_flags(t_printf_flags *flags, char c)
 		flags->precision = flags->precision * 10 + c - '0';
 	if (c == '-')
 		flags->minus++;
-	if (c == '0' && flags->dot && flags->min_size == 0)
+	if (c == '0' && !flags->dot && flags->min_size == 0)
 		flags->zero++;
 	if (c == '.')
 		flags->dot++;
