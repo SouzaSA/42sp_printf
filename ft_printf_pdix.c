@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 23:00:04 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/15 14:22:43 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	ft_printf_id(int n, t_printf_flags *flags)
 	char	*tmp;
 
 	tmp = ft_lltoa_base((long long)n, 10);
-	num = ft_number_flag_apply(tmp, flags);
+	num = ft_add_precision(tmp, flags);
 	free(tmp);
-	tmp = NULL;
+	tmp = ft_flag_plus_apply(num, flags);
+	free(num);
+	num = ft_add_minlen(tmp, flags);
+	free(tmp);
 	n_printed = ft_printf_put(num, flags);
 	free(num);
-	num = NULL;
 	return (n_printed);
 }
 
@@ -53,9 +55,12 @@ int	ft_printf_u(unsigned int un, t_printf_flags *flags)
 	char	*tmp;
 
 	tmp = ft_ulltoa_base((unsigned long long)un, 10);
-	u_num = ft_number_flag_apply(tmp, flags);
+	u_num = ft_add_precision(tmp, flags);
+	free (tmp);
+	tmp = ft_flag_plus_apply(u_num, flags);
+	free(u_num);
+	u_num = ft_add_minlen(tmp, flags);
 	free(tmp);
-	tmp = NULL;
 	n_printed = ft_printf_put(u_num, flags);
 	free(u_num);
 	u_num = NULL;
@@ -69,10 +74,11 @@ int	ft_printf_xX(unsigned long n, t_printf_flags *flags, char upper)
 	char	*tmp;
 
 	tmp = ft_ulltoa_base((unsigned long long)n, 16);
-	x_num = ft_number_flag_apply(tmp, flags);
-	free(tmp);
-	tmp = x_num;
 	x_num = ft_add_precision(tmp, flags);
+	free(tmp);
+	tmp = ft_flag_plus_apply(x_num, flags);
+	free(x_num);
+	x_num = ft_add_minlen(tmp, flags);
 	free(tmp);
 	tmp = x_num;
 	if (flags->sharp && n != 0)
@@ -80,7 +86,6 @@ int	ft_printf_xX(unsigned long n, t_printf_flags *flags, char upper)
 		x_num = ft_strjoin_mod("0x", tmp);
 		free(tmp);
 	}
-	tmp = NULL;
 	if (upper)
 		ft_upper_str(x_num);
 	n_printed = ft_printf_put(x_num, flags);

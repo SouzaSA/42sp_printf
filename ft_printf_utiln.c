@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/14 23:04:21 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/15 11:29:22 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,4 @@ static int	number_of_digits(long long n, long long base)
 		len++;
 	}
 	return (len);
-}
-
-char	*ft_number_flag_apply(char *nstr, t_printf_flags *flags)
-{
-	char	*num;
-
-	if (flags->plus && nstr[0] != '-')
-	{
-		num = ft_strjoin_mod("+", nstr);
-	}
-	else if (flags->space && nstr[0] != '-')
-	{
-		num = ft_strjoin_mod(" ", nstr);
-	}
-	else
-	{
-		num = ft_strjoin_mod("", nstr);
-	}
-	return (num);
 }
