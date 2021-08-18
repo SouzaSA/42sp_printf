@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:30:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 14:43:27 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 15:02:14 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int		ft_func_selector(char const **str, va_list args);
 int		ft_printf_pointer(unsigned long paddr, t_printf_flags *flags);
 int		ft_printf_id(int n, t_printf_flags *flags);
 int		ft_printf_u(unsigned int un, t_printf_flags *flags);
-int		ft_printf_xX(unsigned long n, t_printf_flags *flags, char upper);
+int		ft_printf_xX(unsigned long long n, t_printf_flags *flags, char upper);
 
 char	*ft_lltoa_base(long long n, int base);
-char	*ft_ulltoa_base(unsigned long n, int base);
+char	*ft_ulltoa_base(unsigned long long n, int base);
 
 int		ft_filler(int num, t_printf_flags *flags);
 int		ft_printf_put(char *str, t_printf_flags *flags);

@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 14:44:29 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 15:02:34 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_func_selector(char const **str, va_list args)
 	if (**str == 'u')
 		i = ft_printf_u(va_arg(args, unsigned int), &flags);
 	if (**str == 'x')
-		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 0);
+		i = ft_printf_xX(va_arg(args, unsigned int), &flags, 0);
 	if (**str == 'X')
-		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 1);
+		i = ft_printf_xX(va_arg(args, unsigned int), &flags, 1);
 	if (**str == '%')
 		i = ft_printf_put("%", &flags);
 	return (i);

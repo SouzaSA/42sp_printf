@@ -6,23 +6,22 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 14:54:30 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 15:00:59 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	number_of_digits_unsigned(unsigned long n, long base);
-static int	number_of_digits(long long n, long long base);
+static int	number_of_digits_unsigned(unsigned long long n, int base);
+static int	number_of_digits(long long n, int base);
 
-char	*ft_ulltoa_base(unsigned long n, int base)
+char	*ft_ulltoa_base(unsigned long long n, int base)
 {
 	int		len;
 	char	*base_str;
 	char	*str;
 
-	n = (unsigned int)n;
-	len = number_of_digits_unsigned(n, (long)base);
+	len = number_of_digits_unsigned(n, base);
 	base_str = "0123456789abcdef";
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (str)
@@ -33,13 +32,13 @@ char	*ft_ulltoa_base(unsigned long n, int base)
 		while (n > 0)
 		{
 			str[--len] = base_str[n % base];
-			n /= (unsigned long)base;
+			n /= (unsigned long long)base;
 		}
 	}
 	return (str);
 }
 
-static int	number_of_digits_unsigned(unsigned long n, long base)
+static int	number_of_digits_unsigned(unsigned long long n, int base)
 {
 	int	len;
 
@@ -48,7 +47,7 @@ static int	number_of_digits_unsigned(unsigned long n, long base)
 		len++;
 	while (n != 0)
 	{
-		n /= base;
+		n /= (unsigned long long)base;
 		len++;
 	}
 	return (len);
@@ -60,7 +59,7 @@ char	*ft_lltoa_base(long long n, int base)
 	char	*base_str;
 	char	*str;
 
-	len = number_of_digits(n, (long long)base);
+	len = number_of_digits(n, base);
 	base_str = "0123456789abcdef";
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (str)
@@ -83,7 +82,7 @@ char	*ft_lltoa_base(long long n, int base)
 	return (str);
 }
 
-static int	number_of_digits(long long n, long long base)
+static int	number_of_digits(long long n, int base)
 {
 	int	len;
 
