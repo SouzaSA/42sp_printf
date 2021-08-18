@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:29:42 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 12:40:48 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 12:50:05 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_printf(const char *str, ...)
 			write(1, str, 1);
 			printed++;
 		}
-		str++;
+		if (*str)
+			str++;
 	}
 	va_end(args);
 	return (printed);
