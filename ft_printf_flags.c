@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 10:58:49 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 12:36:28 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ static int	ft_get_flags(t_printf_flags *flags, char const **str)
 	char	*flags_val;
 
 	i = 0;
-	flags_val = "0123456789-0.# +";
+	flags_val = "0123456789-.# +";
 	while (ft_strchr(flags_val, (*str)[i]))
 	{
 		ft_set_flags(flags, (*str)[i]);
 		i++;
 	}
+	if ((*str)[i] == '\0')
+		i--;
 	return (i);
 }
 
