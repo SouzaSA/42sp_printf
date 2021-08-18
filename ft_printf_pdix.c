@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 11:40:54 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 11:50:02 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	ft_printf_pointer(unsigned long long paddr, t_printf_flags *flags)
 	char	*tmp;
 
 	tmp = ft_ulltoa_base(paddr, 16);
-	str_addr = ft_strjoin_mod("0x", tmp);
+	str_addr = ft_add_precision(tmp, flags);
 	free(tmp);
-	tmp = ft_add_precision(str_addr, flags);
+	tmp = ft_add_minlen(str_addr, flags);
 	free(str_addr);
-	str_addr = ft_add_minlen(tmp, flags);
+	str_addr = ft_strjoin_mod("0x", tmp);
 	free(tmp);
 	n_printed = ft_printf_put(str_addr, flags);
 	free(str_addr);
