@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 14:20:42 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:44:29 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ int	ft_func_selector(char const **str, va_list args)
 	if (**str == 's')
 		i = ft_printf_str(va_arg(args, char *), &flags);
 	if (**str == 'p')
-		i = ft_printf_pointer(va_arg(args, long long), &flags);
+		i = ft_printf_pointer(va_arg(args, unsigned long), &flags);
 	if (**str == 'd' || **str == 'i')
 		i = ft_printf_id(va_arg(args, int), &flags);
 	if (**str == 'u')
 		i = ft_printf_u(va_arg(args, unsigned int), &flags);
 	if (**str == 'x')
-		i = ft_printf_xX(va_arg(args, unsigned long long), &flags, 0);
+		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 0);
 	if (**str == 'X')
-		i = ft_printf_xX(va_arg(args, unsigned long long), &flags, 1);
+		i = ft_printf_xX(va_arg(args, unsigned long), &flags, 1);
 	if (**str == '%')
 		i = ft_printf_put("%", &flags);
 	return (i);

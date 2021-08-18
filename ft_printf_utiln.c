@@ -6,22 +6,23 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 13:42:12 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/15 11:29:22 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 14:54:30 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static int	number_of_digits_unsigned(unsigned long long n, long long base);
+static int	number_of_digits_unsigned(unsigned long n, long base);
 static int	number_of_digits(long long n, long long base);
 
-char	*ft_ulltoa_base(unsigned long long n, int base)
+char	*ft_ulltoa_base(unsigned long n, int base)
 {
 	int		len;
 	char	*base_str;
 	char	*str;
 
-	len = number_of_digits_unsigned(n, (long long)base);
+	n = (unsigned int)n;
+	len = number_of_digits_unsigned(n, (long)base);
 	base_str = "0123456789abcdef";
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (str)
@@ -32,13 +33,13 @@ char	*ft_ulltoa_base(unsigned long long n, int base)
 		while (n > 0)
 		{
 			str[--len] = base_str[n % base];
-			n /= (long long)base;
+			n /= (unsigned long)base;
 		}
 	}
 	return (str);
 }
 
-static int	number_of_digits_unsigned(unsigned long long n, long long base)
+static int	number_of_digits_unsigned(unsigned long n, long base)
 {
 	int	len;
 
