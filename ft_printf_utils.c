@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 17:39:44 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/15 14:50:49 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 11:04:36 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_filler(int num, t_printf_flags *flags)
 	i = 0;
 	while (i < num)
 	{
-		if (flags->zero)
+		if (flags->zero && !flags->minus)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
