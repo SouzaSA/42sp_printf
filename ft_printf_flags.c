@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/08 22:48:13 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 12:42:22 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/18 12:48:03 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static int	ft_get_flags(t_printf_flags *flags, char const **str)
 		ft_set_flags(flags, (*str)[i]);
 		i++;
 	}
-	if ((*str)[i] == '\0')
-		i--;
 	return (i);
 }
 
