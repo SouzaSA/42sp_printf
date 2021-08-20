@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 18:32:35 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/20 17:54:57 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/20 17:56:57 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static char	*ft_fill_minlen(char *str, char *tmp, int n, t_printf_flags *flags)
 	while (i < n)
 	{
 		tmp[i] = ' ';
-		if (flags->zero && !flags->dot && !flags->minus)
+		if (flags->zero && !flags->minus)
 		{
 			tmp[i] = '0';
 			if (str[0] == '-')
