@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 18:32:35 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/20 17:41:27 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/20 17:54:57 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*ft_add_minlen(char *nstr, t_printf_flags *flags)
 		dst = ft_strjoin_mod(tmp, nstr);
 	if (flags->minus)
 		dst = ft_strjoin_mod(nstr, tmp);
-	if (dst[fill_size + 1] == 'x')
+	if (dst[fill_size + 1] == 'x' && flags->zero)
 	{
 		dst[fill_size + 1] = '0';
 		dst[1] = 'x';
