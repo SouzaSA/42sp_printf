@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/20 18:34:13 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:35:25 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ int	ft_printf_u(unsigned int un, t_printf_flags *flags)
 	tmp = ft_ulltoa_base((unsigned long)un, 10);
 	u_num = ft_add_precision(tmp, flags);
 	free (tmp);
-	tmp = ft_flag_plus_apply(u_num, flags);
-	free(u_num);
+	tmp = u_num;
 	u_num = ft_add_minlen(tmp, flags);
 	free(tmp);
 	n_printed = ft_printf_put(u_num, flags);
