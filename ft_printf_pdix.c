@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/10 18:12:09 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/18 15:01:59 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/20 17:46:09 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,10 @@ int	ft_printf_pointer(unsigned long paddr, t_printf_flags *flags)
 	tmp = ft_ulltoa_base(paddr, 16);
 	str_addr = ft_add_precision(tmp, flags);
 	free(tmp);
-	if (!flags->zero)
-	{
-		tmp = ft_strjoin_mod("0x", str_addr);
-		free (str_addr);
-		str_addr = tmp;
-	}
-	tmp = ft_add_minlen(str_addr, flags);
-	free(str_addr);
-	str_addr = tmp;
-	if (flags->zero)
-	{
-		str_addr = ft_strjoin_mod("0x", tmp);
-		free(tmp);
-	}
+	tmp = ft_strjoin_mod("0x", str_addr);
+	free (str_addr);
+	str_addr = ft_add_minlen(tmp, flags);
+	free(tmp);
 	n_printed = ft_printf_put(str_addr, flags);
 	free(str_addr);
 	return (n_printed);
@@ -90,14 +80,14 @@ int	ft_printf_xX(unsigned int n, t_printf_flags *flags, char upper)
 	free(tmp);
 	tmp = ft_flag_plus_apply(x_num, flags);
 	free(x_num);
-	x_num = ft_add_minlen(tmp, flags);
-	free(tmp);
-	tmp = x_num;
 	if (flags->sharp && n != 0)
 	{
 		x_num = ft_strjoin_mod("0x", tmp);
 		free(tmp);
+		tmp = x_num;
 	}
+	x_num = ft_add_minlen(tmp, flags);
+	free(tmp);
 	if (upper)
 		ft_upper_str(x_num);
 	n_printed = ft_printf_put(x_num, flags);

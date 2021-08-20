@@ -6,7 +6,7 @@
 /*   By: sde-alva <sde-alva@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:28:11 by sde-alva          #+#    #+#             */
-/*   Updated: 2021/08/15 15:45:38 by sde-alva         ###   ########.fr       */
+/*   Updated: 2021/08/20 16:15:04 by sde-alva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	ft_printf_char(char c, t_printf_flags *flags)
 int	ft_printf_str(char *str, t_printf_flags *flags)
 {
 	int		i;
-	int 	len;
+	int		len;
 	char	*prt;
 
 	if (str)
 		prt = ft_strjoin_mod("", str);
-	if( !str)
+	if (!str)
 		prt = ft_strjoin_mod("", "(null)");
 	len = ft_strlen(prt);
 	if (flags->dot && flags->precision < len)
